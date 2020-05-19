@@ -106,18 +106,21 @@ namespace TShockAPI
 
 			if (pos.X < 0 || pos.Y < 0 || pos.X >= Main.maxTilesX * 16 - 16 || pos.Y >= Main.maxTilesY * 16 - 16)
 			{
+				args.Player.SendErrorMessage("Your update was rejected by the server for being out of tile bounds.");
 				args.Handled = true;
 				return;
 			}
 
 			if (item < 0 || item >= args.Player.TPlayer.inventory.Length)
 			{
+				args.Player.SendErrorMessage("Your update was rejected because inventory length was exceeded.");
 				args.Handled = true;
 				return;
 			}
 
 			if (args.Player.LastNetPosition == Vector2.Zero)
 			{
+				args.Player.SendErrorMessage("Your update was rejected because LastNetPosition was zero.");
 				args.Handled = true;
 				return;
 			}
